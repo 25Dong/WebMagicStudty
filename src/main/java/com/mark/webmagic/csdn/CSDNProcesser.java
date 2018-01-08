@@ -24,11 +24,10 @@ public class CSDNProcesser implements PageProcessor {
 	private Site site= new Site();
 	public void process(Page page) {
 		Html html = page.getHtml();
-		//获取扩展其他页的URl
-		List<String> links =  html.css("div#papelist").links().all();
+		//确定要加入待爬取队列的URL
+		List<String> links =  html.css("div.pagination-wrapper").links().all();
 		parserCSDNModel(html.getDocument(),page);
 		page.addTargetRequests(links);
-
 	}
 
 	//解析页面信息
